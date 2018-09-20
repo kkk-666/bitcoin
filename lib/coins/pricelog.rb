@@ -45,4 +45,8 @@ module Coins::Pricelog extend self
     xrp_pricelog = PriceLog.new(:price => last,:coin_id => 4)
     xrp_pricelog.save
   end
+  
+  def mona
+    # これから実装
+  end
 end
