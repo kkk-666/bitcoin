@@ -1,0 +1,32 @@
+<%= form_for coin, :url => {:action => :create} do |form| %>
+
+   <!-- 名前 -->
+   <%= form.label :name, "名前"%>
+   <%= form.text_field :name, required: true  %>
+   
+   <!-- 名前（英語） -->
+   <%= form.label :name_en, "名前(英語)"%>
+   <%= form.text_field :name_en, required: true  %>
+   
+   <!-- シンボル -->
+   <%= form.label :symbol, "シンボル"%>
+   <%= form.text_field :symbol, required: true %>
+   
+   <!-- 価格 -->
+   <%= form.label :price, "価格"%>
+   <%= form.number_field :price, required: true %>
+   
+   <!-- 保存ボタン -->
+   <input type = "submit" value = "保存">
+
+   
+<% end %>
+
+<% if coin.errors.any? %>
+   <p>追加できませんでした。</p>
+   <p>エラーは<%=coin.errors.count %>件ありました。</p>
+   <!--ここからエラーメッセージ表示-->
+   <% coin.errors.full_messages.each do |massage|%>
+   <%= massage %>
+   <% end %>
+<% end %>

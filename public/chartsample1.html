@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chart</title>
+
+<!--1 Chart.jsの本体-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+  </head>
+    <body>
+<!--2　表示するところ-->
+       <canvas id="myChart" width="600" height="450"></canvas>
+       
+<!--3 スクリプトページの下に入れる-->
+	<script>
+		var date_labels = ["2018-08-01", "2018-08-02", "2018-08-03", "2018-08-04", "2018-08-05", "2018-08-06","2018-08-07", "2018-08-08", "2018-08-09", "2018-08-10"];
+		var price_logs = [350000, 250000, 200000, 300000, 350000, 300000,250000, 350000, 450000, 400000];
+	</script>
+
+	<script>
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	        labels: date_labels,
+	        datasets: [{
+	            label: 'price',
+	            data: price_logs,
+				borderColor: "#149bdf",
+        		fill: false,
+        		pointBorderWidth: 3,
+	        }]
+	    },
+	    options: {
+	        responsive: false,
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        },
+	        elements: {
+	            line: {
+	                tension: 0.2, // disables bezier curves
+	            }
+	        }
+	    }
+	});
+	</script>
+	
+	
+	
+	
+</body>
+
+</html>
+
+
+
+
+
+

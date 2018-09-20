@@ -1,0 +1,129 @@
+
+    <main role="main">
+      
+      <div id="carousel-example" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example" data-slide-to="1"></li>
+    <li data-target="#carousel-example" data-slide-to="2"></li>
+  </ol>
+ 
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag('VCoin.jpg', :class => "carousel-item active")%>
+      <div class="carousel-caption">
+        <h1>Encryption currency.</h1>
+          <p>Bitcoin Cryptocurrency ICO Landing Page.</p>
+      </div>
+    </div>
+    <div class="item">
+      <%#= image_tag('VCoin1.png', :class => "carousel-item")%>
+    </div>
+    <div class="item">
+      <%#= image_tag('VCoin2.jpg', :class => "carousel-item")%>
+    </div>
+  </div>
+ 
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  </a>
+</div>
+
+      <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row my-5">
+          <div class="col-lg-4">
+            <%= image_tag('bitcoin_logo2.jpg', :class => "col-lg-4" ) %>
+            <h2>Bitcoin</h2>
+            <p>ビットコインはサトシ・ナカモトを名乗る人物によって2009年に運用が開始された。ビットコインは、他の通貨や商品・サービスの対価として受け取ったり、購入、交換ができる。ビットコインは極めて低いコストでの決済を平均10分程度の待機によって可能にする。</p>
+            <%= link_to "公式サイト", 'https://bitcoin.org/ja/',:class => "btn btn-secondary" %>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <%= image_tag('ethereum_logo2.png', :class => "col-lg-4" ) %>
+            <h2>Ethereum</h2>
+            <p>イーサリアムとは、分散型アプリケーション (DApps) やスマート・コントラクトを構築するためのプラットフォームの名称、及び関連するオープンソース・ソフトウェア・プロジェクトの総称である。</p>
+            <%= link_to "公式サイト", 'https://www.ethereum.org/',:class => "btn btn-secondary" %>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <%= image_tag('ripple_logo2.jpg', :class => "col-lg-4" ) %>
+            <h2>Ripple</h2>
+            <p>リップルの開発は、2004年にカナダのウェブ開発者である Ryan Fugger により開始された。リップルはビットコインと同様に分散型台帳技術を利用する。ビットコインでは平均10分程度かかっていた決済をリップルでは数秒で行うことができる。</p>
+            <%= link_to "公式サイト", 'https://ripple.com/xrp/',:class => "btn btn-secondary" %>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <!-- START THE FEATURETTES -->
+
+        <h3 class="my-4">最新ニュース</h3>
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-8 order-md-2">
+            <a href="#" class="">
+            <h2 class="featurette-heading text-info">Oh yeah, it's that good. See for yourself.<span class="badge badge-secondary">New</span></h2>
+            </a>
+            <p class="lead text-muted">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper....</p>
+          </div>
+          <div class="col-md-4 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-8 order-md-2">
+            <a href="#" class="">
+            <h2 class="featurette-heading text-info">Oh yeah, it's that good. See for yourself.<span class="badge badge-secondary">New</span></h2>
+            </a>
+            <p class="lead text-muted">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper....</p>
+          </div>
+          <div class="col-md-4 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-8 order-md-2">
+            <a href="#" class="">
+            <h2 class="featurette-heading text-info">Oh yeah, it's that good. See for yourself.<span class="badge badge-secondary">New</span></h2>
+            </a>
+            <p class="lead text-muted">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper....</p>
+          </div>
+          <div class="col-md-4 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+
+      </div><!-- /.container -->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+  </body>

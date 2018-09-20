@@ -1,0 +1,14 @@
+   <!-- 名前 -->
+   <%= form.label :name, "名前"%>
+   <%= form.text_field :name, required: true  %>
+   
+   <!-- シンボル -->
+   <%= form.label :symbol, "シンボル"%>
+   <%= form.text_field :symbol, required: true %>
+   
+   <!-- 価格 -->
+   <%= form.label :price, "価格"%>
+   <%= form.number_field :price, required: true %>
+
+   <!-- 保存ボタン -->
+   <input type = "submit" value = "保存">

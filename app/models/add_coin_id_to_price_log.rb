@@ -1,0 +1,2 @@
+class AddCoinIdToPriceLog < ApplicationRecord
+end

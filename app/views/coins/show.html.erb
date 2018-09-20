@@ -1,0 +1,192 @@
+
+        <!--パンくずリスト-->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <%= link_to "Home", {:controller => "home",:action => "top"}, :class => "breadcrumb-item" %>
+          </li>
+          <li class="breadcrumb-item">
+            <%= link_to "仮想通貨一覧", {:controller => "coins",:action => "list"}, :class => "breadcrumb-item" %>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page"><%= @coin.name %></li>
+        </ol>
+      </nav>
+        <h1><%= @coin.name_en %>(<%= @coin.name %>)</h1>
+        
+        <div class="row">
+            
+            <div class="col-lg-8 col-md-5">
+                <div id="canvas-container">
+                  <canvas id="myChart" width="600" height="450"></canvas>  
+                </div>
+              <%#= image_tag("1.png", :width => "100%") %>
+
+              
+              
+            </div>
+            
+            <div class="col-lg-4 col-md-5">
+              <table class="table table-sm table-striped table-light">
+              <thead>
+                  <tr>
+                      <th>価格</th>
+                      <th>日付</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% @coin.price_log.each do |pricelog| %>
+                  <tr>
+                      <td><%= pricelog.price %></td>
+                      <td><%= pricelog.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+                  </tr>       
+                  <% end %>
+              </tbody>
+              </table>
+                
+            </div>
+    
+        </div>
+        
+        <h2>
+        <%= @coin.name_en %>(<%= @coin.name %>)詳細
+        <%= link_to :controller => "coins",:action => "edit",:id => @coin.id do %>
+          <button type="button" class="btn btn-outline-warning">編集</button>
+        <% end %>
+        </h2>
+        <div class="row">
+            <p>
+                ウェブサイト：
+                <% if !@coin.website.blank? %>
+                  <%= link_to "公式サイト（日本語）", @coin.website, :target => "_blank" %><br />
+                <% else %>
+                  登録されていません。<br />
+                <% end %>
+                シンボル：<%= @coin.symbol %><br />
+                説明分：descの内容が入る
+            </p>
+        </div>
+        
+        <%=link_to "戻る", {:controller => "coins", :action => "list"}, :class => "btn btn-outline-primary" %>
+        
+        <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">編集</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class = "row justify-content-center">
+   <div class = "col-md-6">
+            <div class="modal-body px-2">
+                <%= form_for @coin, :url => {:action => :create} do |form| %>
+                
+                    <div class="md-form mb-5">
+                       <!-- 名前 -->
+                       <%= form.label :name, "名前"%>
+                       <%= form.text_field :name, required: true, class: "form-control", placeholder: "例：ビットコイン", value: @coin.name %>
+                    </div>
+                     
+                     <div class="md-form mb-5">  
+                       <!-- 名前（英語） -->
+                       <%= form.label :name_en, "名前(英語)"%>
+                       <%= form.text_field :name_en, required: true, class: "form-control", placeholder: "例：Bitcoin", value: @coin.name_en %>
+                    </div>
+                    
+                    <div class="md-form mb-5">   
+                       <!-- シンボル -->
+                       <%= form.label :symbol, "シンボル"%>
+                       <%= form.text_field :symbol, required: true, class: "form-control", placeholder: "例：BTC", value: @coin.symbol  %>
+                    </div>
+                    
+                    <div class="md-form mb-5">   
+                       <!-- 価格 -->
+                       <%= form.label :price, "価格"%>
+                       <%= form.number_field :price, required: true, class: "form-control", placeholder: "例：1000000.0", value: @coin.price  %>
+                    </div>
+                    
+                       <!-- 保存ボタン -->
+                       <input type = "submit" value = "保存" class="btn btn-primary btn-block my-0">
+                <% end %>
+        </div>
+    </div>
+    
+</div>
+
+<div class="text-center">
+    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">編集</a>
+</div>
+ 
+<!--<p>
+  <strong>ID：</strong>
+  <%= @coin.id %>
+</p>
+
+<p>
+  <strong>通貨名：</strong>
+  <%= @coin.name %>
+</p>
+ 
+<p>
+  <strong>シンボル：</strong>
+  <%= @coin.symbol %>
+</p>
+
+<p>
+  <strong>価格：</strong>
+  <%= @coin.price %>
+</p>-->
+
+<%#= link_to"編集",:controller => "coins",:action => "edit",:id => @coin.id %>
+<%#= link_to "戻る",:controller => "coins",:action => "list" %>
+
+<!--ここからグラフデータ-->
+<script>
+//		var date_labels = ["2018-08-01", "2018-08-02", "2018-08-03", "2018-08-04", "2018-08-05", "2018-08-06","2018-08-07", "2018-08-08", "2018-08-09", "2018-08-10"];
+// 		var price_logs = [350000, 250000, 200000, 300000, 350000, 300000,250000, 350000, 450000, 400000];
+        <% @price_list = [] %>
+        <% @date_list = [] %>
+        
+		<% @coin.price_log.each do |pricelog| %>
+		    <% @price_list.push(pricelog.price) %>
+		    <% @date_list.push(pricelog.created_at.strftime("%y-%m-%d")) %>
+        <% end %>
+        
+        var price_logs = <%= @price_list.reverse %>;
+        var date_labels = <%= @date_list.reverse.to_json.html_safe %>;
+</script>
+<!--ここまでグラフデータ-->
+
+
+	<script>
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	        labels: date_labels,
+	        datasets: [{
+	            label: 'price',
+	            data: price_logs,
+				borderColor: "#65ace4",
+        		fill: false,
+        		pointBorderWidth: 3,
+	        }]
+	    },
+	    options: {
+	        responsive: false,
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        },
+	        elements: {
+	            line: {
+	                tension: 0, // disables bezier curves
+	            }
+	        }
+	    }
+	});
+	</script>

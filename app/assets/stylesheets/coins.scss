@@ -1,0 +1,26 @@
+// Place all the styles related to the coins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+    #background-color:purple;
+}
+
+.main {
+    background-color:#512da8;
+}
+
+.row {
+    #margin-bottom: 15px;
+}
+
+.title h1 {
+    color: #75A9FF;
+    font-size: 60px;
+    width: 300px;
+    height: 80px;
+}
+
+.img-thumbnail {
+    height:150px !important;
+}
