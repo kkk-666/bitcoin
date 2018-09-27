@@ -34,6 +34,18 @@ module Coins::Pricelog extend self
     btc_pricelog.save
   end
   
+  def xem
+    uri = URI.parse('https://api.zaif.jp/api/1/ticker/xem_jpy')
+    json = Net::HTTP.get(uri)
+    result = JSON.parse(json)
+    
+    last = result["last"].to_f 
+    puts "last:#{last}"
+    
+    xem_pricelog = PriceLog.new(:price => last,:coin_id => 3)
+    xem_pricelog.save
+  end
+  
   def xrp
     uri = URI.parse('https://public.bitbank.cc/xrp_jpy/ticker')
     json = Net::HTTP.get(uri)
@@ -46,7 +58,39 @@ module Coins::Pricelog extend self
     xrp_pricelog.save
   end
   
+  def ltc
+    uri = URI.parse('https://public.bitbank.cc/xrp_jpy/ticker')
+    json = Net::HTTP.get(uri)
+    result = JSON.parse(json)
+    
+    last = result["data"]["last"].to_f
+    puts "last:#{last}"
+    
+    ltc_pricelog = PriceLog.new(:price => last,:coin_id => 5)
+    ltc_pricelog.save
+  end
+  
+  def bcc
+    uri = URI.parse('https://public.bitbank.cc/bcc_jpy/ticker')
+    json = Net::HTTP.get(uri)
+    result = JSON.parse(json)
+    
+    last = result["data"]["last"].to_f
+    puts "last:#{last}"
+    
+    bcc_pricelog = PriceLog.new(:price => last,:coin_id => 6)
+    bcc_pricelog.save
+  end
+  
   def mona
-    # これから実装
+    uri = URI.parse('https://public.bitbank.cc/mona_jpy/ticker')
+    json = Net::HTTP.get(uri)
+    result = JSON.parse(json)
+    
+    last = result["data"]["last"].to_f
+    puts "last:#{last}"
+    
+    mona_pricelog = PriceLog.new(:price => last,:coin_id => 7)
+    mona_pricelog.save
   end
 end

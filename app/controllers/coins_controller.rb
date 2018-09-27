@@ -3,7 +3,7 @@ class CoinsController < ApplicationController
    before_action :set_coin, only: [:update,:edit,:delete]
    before_action :set_coin_with_pricelogs, only: [:show]
     # ユーザがログインしていないと"show"にアクセスできない
-  before_action :authenticate_user!, only: [:new,:edit]
+   before_action :authenticate_user!, only: [:new,:edit]
    
   def list
     @coins = Coin.all
@@ -39,13 +39,13 @@ class CoinsController < ApplicationController
   end
   
   def update
-    if @coin.update(coins_params)
+    if @coin.update(coin_params)
       #成功した時
       redirect_to action: 'show', id: @coin.id 
     else
       #失敗した時
       render "edit"
-    end
+    end 
   end
   
   def destroy

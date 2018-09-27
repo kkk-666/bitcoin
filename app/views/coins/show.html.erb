@@ -34,7 +34,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <% @coin.price_log.each do |pricelog| %>
+                  <% @coin.price_log.first(15).each do |pricelog| %>
                   <tr>
                       <td><%= pricelog.price %></td>
                       <td><%= pricelog.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
@@ -148,7 +148,7 @@
         <% @price_list = [] %>
         <% @date_list = [] %>
         
-		<% @coin.price_log.each do |pricelog| %>
+		<% @coin.price_log.first(15).each do |pricelog| %>
 		    <% @price_list.push(pricelog.price) %>
 		    <% @date_list.push(pricelog.created_at.strftime("%y-%m-%d")) %>
         <% end %>
