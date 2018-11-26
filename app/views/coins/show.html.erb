@@ -1,86 +1,139 @@
 
-        <!--パンくずリスト-->
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <%= link_to "Home", {:controller => "home",:action => "top"}, :class => "breadcrumb-item" %>
-          </li>
-          <li class="breadcrumb-item">
-            <%= link_to "仮想通貨一覧", {:controller => "coins",:action => "list"}, :class => "breadcrumb-item" %>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page"><%= @coin.name %></li>
-        </ol>
-      </nav>
-        <h1><%= @coin.name_en %>(<%= @coin.name %>)</h1>
+<!--
+        	Page title
+        -->
+        <section id="page-title" class="py-30px bg-second-color">
+        	<div class="container">
+        		<div class="d-flex page-title justify-content-center justify-content-md-between align-items-center flex-column flex-md-row">
+					<h1 class="d-flex mb-0 fs-2 text-white fw-500">仮想通貨</h1>
+					<nav class="d-flex mb-0" aria-label="breadcrumb">
+					  <ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="/coins/list">仮想通貨一覧</a></li>
+						<li class="breadcrumb-item active" aria-current="page"><%= @coin.name %></li>
+					  </ol>
+					</nav>
+				</div>
+        	</div>
+        </section>        
         
-        <div class="row">
-            
-            <div class="col-lg-8 col-md-5">
-                <div id="canvas-container">
-                  <canvas id="myChart" width="600" height="450"></canvas>  
+        
+        <section id="page-main" class="py-30px">
+        	<div class="container"> 
+        	
+        	<div class="row">
+                 <div class="col-1 pt-3">
+                    <% if @coin.image.attached? %>
+                        <%= image_tag(@coin.image,:class => "img-fluid img-thumbnail") %>
+                    <% elsif !@coin.image_url.blank? %>
+                        <%= image_tag(@coin.image_url,:class => "img-fluid img-thumbnail") %>
+                    <% else %>
+                        <%= image_tag('noimage.png', :class => "img-fluid img-thumbnail")%>
+                    <% end %>
                 </div>
-              <%#= image_tag("1.png", :width => "100%") %>
-
-              
-              
-            </div>
-            
-            <div class="col-lg-4 col-md-5">
-              <table class="table table-sm table-striped table-light">
-              <thead>
-                  <tr>
-                      <th>価格</th>
-                      <th>日付</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <% @coin.price_log.first(15).each do |pricelog| %>
-                  <tr>
-                      <td><%= pricelog.price %></td>
-                      <td><%= pricelog.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-                  </tr>       
-                  <% end %>
-              </tbody>
-              </table>
+                  <div class="col-11  align-self-center">
+                    <h1><%= @coin.name_en %>(<%= @coin.name %>)</h1>
+                  </div>
+                  
+                </div>
                 
-            </div>
-    
-        </div>
-        
-        <h2>
-        <%= @coin.name_en %>(<%= @coin.name %>)詳細
-        <%= link_to :controller => "coins",:action => "edit",:id => @coin.id do %>
-          <button type="button" class="btn btn-outline-warning">編集</button>
-        <% end %>
-        </h2>
-        <div class="row">
-            <p>
-                ウェブサイト：
-                <% if !@coin.website.blank? %>
-                  <%= link_to "公式サイト（日本語）", @coin.website, :target => "_blank" %><br />
-                <% else %>
-                  登録されていません。<br />
+                <div class="row">
+                    
+                    <div class="col-lg-7">
+                        <div id="canvas-container">
+                          <canvas id="myChart" width="550" height="400"></canvas>
+                        </div>
+                      
+                    </div>
+                    
+                    <div class="col-lg-5">
+                      <table class="table table-sm table-striped">
+                      <thead>
+                          <tr>
+                              <th>価格</th>
+                              <th>最高値</th>
+                              <th>最安値</th>
+                              <th>価格差</th>
+                              <th>日付</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                           <% @coin.price_log.first(15).each do |pricelog| %>
+                          <tr>
+                              <td><%= pricelog.price.to_f.round(4) %></td>
+                              <td><%= pricelog.high.to_f.round(4) %></td>
+                              <td><%= pricelog.low.to_f.round(4) %></td>
+                              <td><%= pricelog.get_gap.to_f.round(4) %></td>
+                              <td><%= pricelog.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+                          </tr>       
+                          <% end %>
+                      </tbody>
+                      </table>
+                        
+                    </div>
+            
+                </div>
+                
+                <div class="row">
+                    <div class="col-2 pt-1">
+                        <% if @coin.image.attached? %>
+                            <%= image_tag(@coin.image,:class => "img-fluid img-thumbnail") %>
+                        <% elsif !@coin.image_url.blank? %>
+                            <%= image_tag(@coin.image_url,:class => "img-fluid img-thumbnail") %>
+                        <% else %>
+                            <%= image_tag('noimage.png', :class => "img-fluid img-thumbnail")%>
+                        <% end %>
+                    </div>
+                    <div class="col-10">
+                        <h2>
+                        <%= @coin.name_en %>(<%= @coin.name %>)詳細<br />
+                        </h2>
+                        <div class="pt-3">
+                            ウェブサイト：
+                            <% if !@coin.website.blank? %>
+                              <%= link_to "公式サイト（日本語）", @coin.website, :target => "_blank" %><br />
+                            <% else %>
+                              登録されていません。<br />
+                            <% end %>
+                            シンボル：<%= @coin.symbol %><br />
+                            説明分：descの内容が入る
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    
+                </div>
+                
+                 
+                <div class="pt-2">
+                <% if user_signed_in? %>
+                    <a href="" class="btn btn-outline-warning" data-toggle="modal" data-target="#modalRegisterForm">編集</a>
                 <% end %>
-                シンボル：<%= @coin.symbol %><br />
-                説明分：descの内容が入る
-            </p>
-        </div>
+                
+                <%=link_to "戻る", {:controller => "coins", :action => "list"}, :class => "btn btn-outline-color" %>
+                </div>
+                	
+        	
+        	</div>
+        </section>
         
-        <%=link_to "戻る", {:controller => "coins", :action => "list"}, :class => "btn btn-outline-primary" %>
         
+        
+        <% if user_signed_in? %>
         <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">編集</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class = "row justify-content-center">
-   <div class = "col-md-6">
-            <div class="modal-body px-2">
-                <%= form_for @coin, :url => {:action => :create} do |form| %>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">コインの編集</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class = "row justify-content-center">
+                    <div class = "col-md-6">
+                    <div class="modal-body px-2">
+                    <%= form_for @coin, :url => {:action => :create} do |form| %>
                 
                     <div class="md-form mb-5">
                        <!-- 名前 -->
@@ -108,38 +161,14 @@
                     
                        <!-- 保存ボタン -->
                        <input type = "submit" value = "保存" class="btn btn-primary btn-block my-0">
-                <% end %>
-        </div>
-    </div>
+                    <% end %>
+                </div>
+            </div>
     
-</div>
+        </div>
+        <% end %>
 
-<div class="text-center">
-    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">編集</a>
-</div>
- 
-<!--<p>
-  <strong>ID：</strong>
-  <%= @coin.id %>
-</p>
 
-<p>
-  <strong>通貨名：</strong>
-  <%= @coin.name %>
-</p>
- 
-<p>
-  <strong>シンボル：</strong>
-  <%= @coin.symbol %>
-</p>
-
-<p>
-  <strong>価格：</strong>
-  <%= @coin.price %>
-</p>-->
-
-<%#= link_to"編集",:controller => "coins",:action => "edit",:id => @coin.id %>
-<%#= link_to "戻る",:controller => "coins",:action => "list" %>
 
 <!--ここからグラフデータ-->
 <script>
@@ -190,3 +219,4 @@
 	    }
 	});
 	</script>
+	

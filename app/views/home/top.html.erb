@@ -1,129 +1,652 @@
+        
+        <!-- Banner -->
+        <section id="banner">
+    		<div class="demo-multibackground py-250px py-md-150px text-center" 
+				 data-multibackground="debug"
+				 data-multibackground-layer-0-type="youtube"
+				 data-multibackground-layer-0-attachment="parallax"
+				 data-multibackground-layer-0-parallaxspeed="-1.0"
+				 data-multibackground-layer-0-id="-MKapbz0GIo">
+				<div class="container">
+					<span class="text-gray-200 fw-300 fs-1_6">Encryption currency.</span>
+					<h1 class="mt-10px text-white">Bitcoin Cryptocurrency ICO Landing Page.</h1>
+				</div>
+			</div>
+    	</section>
+        
+        
+        <!-- Our News -->
+        <section class="py-80px">
+        	<div class="heading-st-3 text-center mb-40px"><h2>最新News</h2></div>
+        	<div class="container">
+        		<div class="row">
+        			
+        			<% @news_list.first(6).each do |news| %>
+        			<div class="col-lg-6 mb-50px">
+        				<span class="text-first-color fw-700"><%= news[:published] %></span>
+        				<h3 class="mb-20px"><a class="text-black" href="<%= news[:url] %> " target="_blank"><%= news[:title] %></a></h3>
+        				<p>
+        					<%= news[:summary].gsub(/\[&#8230;\]/,'') %>...<a href="<%= news[:url] %> " target="_blank"><詳細>
+        				</p>
+					</div>
+        			<% end %>
+        			
+					
 
-    <main role="main">
-      
-      <div id="carousel-example" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example" data-slide-to="1"></li>
-    <li data-target="#carousel-example" data-slide-to="2"></li>
-  </ol>
- 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <%= image_tag('VCoin.jpg', :class => "carousel-item active")%>
-      <div class="carousel-caption">
-        <h1>Encryption currency.</h1>
-          <p>Bitcoin Cryptocurrency ICO Landing Page.</p>
-      </div>
-    </div>
-    <div class="item">
-      <%#= image_tag('VCoin1.png', :class => "carousel-item")%>
-    </div>
-    <div class="item">
-      <%#= image_tag('VCoin2.jpg', :class => "carousel-item")%>
-    </div>
-  </div>
- 
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-  </a>
-</div>
-
-      <!-- Marketing messaging and featurettes
-      ================================================== -->
-      <!-- Wrap the rest of the page in another container to center all the content. -->
-
-      <div class="container marketing">
-
-        <!-- Three columns of text below the carousel -->
-        <div class="row my-5">
-          <div class="col-lg-4">
-            <%= image_tag('bitcoin_logo2.jpg', :class => "col-lg-4" ) %>
-            <h2>Bitcoin</h2>
-            <p>ビットコインはサトシ・ナカモトを名乗る人物によって2009年に運用が開始された。ビットコインは、他の通貨や商品・サービスの対価として受け取ったり、購入、交換ができる。ビットコインは極めて低いコストでの決済を平均10分程度の待機によって可能にする。</p>
-            <%= link_to "公式サイト", 'https://bitcoin.org/ja/',:class => "btn btn-secondary" %>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <%= image_tag('ethereum_logo2.png', :class => "col-lg-4" ) %>
-            <h2>Ethereum</h2>
-            <p>イーサリアムとは、分散型アプリケーション (DApps) やスマート・コントラクトを構築するためのプラットフォームの名称、及び関連するオープンソース・ソフトウェア・プロジェクトの総称である。</p>
-            <%= link_to "公式サイト", 'https://www.ethereum.org/',:class => "btn btn-secondary" %>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <%= image_tag('ripple_logo2.jpg', :class => "col-lg-4" ) %>
-            <h2>Ripple</h2>
-            <p>リップルの開発は、2004年にカナダのウェブ開発者である Ryan Fugger により開始された。リップルはビットコインと同様に分散型台帳技術を利用する。ビットコインでは平均10分程度かかっていた決済をリップルでは数秒で行うことができる。</p>
-            <%= link_to "公式サイト", 'https://ripple.com/xrp/',:class => "btn btn-secondary" %>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
+        			
+        		
+        		</div>
+			 </div>
+		</section>
 
 
-        <!-- START THE FEATURETTES -->
+         <!--
+        	Coin tabs
+        -->
+        <section id="coin-tabs" class="py-80px bg-gray-200">
+        	<div class="container">
+        		<!--nav tabs-->
+        		<ul class="nav nav-tabs brd-none" id="myTab" role="tablist">
+				  <li class="nav-item">
+					<a class="nav-link active rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="btc-tab" data-toggle="tab" href="#btc" role="tab" aria-controls="btc" aria-selected="true">Bitcoin (BTC)</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="bcc-tab" data-toggle="tab" href="#bcc" role="tab" aria-controls="bcc" aria-selected="false">Bitcoin Cash (BCC)</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="xem-tab" data-toggle="tab" href="#xem" role="tab" aria-controls="xem" aria-selected="false">XEM (XEM)</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="eth-tab" data-toggle="tab" href="#eth" role="tab" aria-controls="eth" aria-selected="false">Ethereum (ETH)</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="xrp-tab" data-toggle="tab" href="#xrp" role="tab" aria-controls="xrp" aria-selected="false">Ripple (XRP)</a>
+				  </li>
+				</ul>
+				
+				
+				
+				
+				<!--tab panes-->
+				<div class="tab-content" id="myTabContent">
+					
+					
+					
+					<!--Bitcoin tab-->
+					<div class="tab-pane fade show active" id="btc" role="tabpanel" aria-labelledby="btc-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(2).price_log[0].price.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(2).price_log[0].low.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(2).price_log[0].high.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(2).price_log[0].get_gap.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Gap</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table mb-0">
+									  <thead>
+										<tr>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(2).price_log[0].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(2).price_log[0].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(2).price_log[1].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(2).price_log[1].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(2).price_log[2].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(2).price_log[2].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(2).price_log[3].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(2).price_log[3].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(2).price_log[4].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(2).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr1
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								
 
-        <h3 class="my-4">最新ニュース</h3>
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-8 order-md-2">
-            <a href="#" class="">
-            <h2 class="featurette-heading text-info">Oh yeah, it's that good. See for yourself.<span class="badge badge-secondary">New</span></h2>
-            </a>
-            <p class="lead text-muted">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper....</p>
-          </div>
-          <div class="col-md-4 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-8 order-md-2">
-            <a href="#" class="">
-            <h2 class="featurette-heading text-info">Oh yeah, it's that good. See for yourself.<span class="badge badge-secondary">New</span></h2>
-            </a>
-            <p class="lead text-muted">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper....</p>
-          </div>
-          <div class="col-md-4 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-8 order-md-2">
-            <a href="#" class="">
-            <h2 class="featurette-heading text-info">Oh yeah, it's that good. See for yourself.<span class="badge badge-secondary">New</span></h2>
-            </a>
-            <p class="lead text-muted">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper....</p>
-          </div>
-          <div class="col-md-4 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <!-- /END THE FEATURETTES -->
-
-      </div><!-- /.container -->
-
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-  </body>
+								
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="btc-chart" width="430" height="280"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<!--/bitcoin tab-->
+					
+					<!--Bitcoin cash tab-->
+					<div class="tab-pane fade" id="bcc" role="tabpanel" aria-labelledby="bcc-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(6).price_log[0].price.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(6).price_log[0].low.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(6).price_log[0].high.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(6).price_log[0].get_gap.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Gap</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table mb-0">
+									  <thead>
+										<tr>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(6).price_log[0].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(6).price_log[0].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(6).price_log[1].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(6).price_log[1].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(6).price_log[2].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(6).price_log[2].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(6).price_log[3].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(6).price_log[3].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td></tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(6).price_log[4].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(6).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr1
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="bcc-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/Bitcoin cash tab-->
+					
+					<!--XEM tab-->
+					<div class="tab-pane fade" id="xem" role="tabpanel" aria-labelledby="xem-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(3).price_log[0].price.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(3).price_log[0].low.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(3).price_log[0].high.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(3).price_log[0].get_gap.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Gap</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table mb-0">
+									  <thead>
+										<tr>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(3).price_log[0].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(3).price_log[0].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(3).price_log[1].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(3).price_log[1].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(3).price_log[2].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(3).price_log[2].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(3).price_log[3].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(3).price_log[3].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td></tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(3).price_log[4].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(3).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr1
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="xem-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/Litecoin tab-->
+					
+					<!-- Ethirum tab -->
+					<div class="tab-pane fade" id="eth" role="tabpanel" aria-labelledby="eth-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(1).price_log[0].price.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(1).price_log[0].low.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(1).price_log[0].high.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(1).price_log[0].get_gap.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Gap</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table mb-0">
+									  <thead>
+										<tr>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(1).price_log[0].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(1).price_log[0].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(1).price_log[1].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(1).price_log[1].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(1).price_log[2].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(1).price_log[2].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(1).price_log[3].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(1).price_log[3].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td></tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(1).price_log[4].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(1).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr1
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="eth-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/Ethirum tab-->
+					
+					<!--Ripple Tab-->
+					<div class="tab-pane fade" id="xrp" role="tabpanel" aria-labelledby="xrp-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(4).price_log[0].price.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(4).price_log[0].low.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(4).price_log[0].high.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-3 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">JPY</span>
+											<span class="text-first-color"><%= set_header_pricelogs(4).price_log[0].get_gap.to_f.round(4) %></span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Gap</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table mb-0">
+									  <thead>
+										<tr>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(4).price_log[0].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(4).price_log[0].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(4).price_log[1].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(4).price_log[1].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(4).price_log[2].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(4).price_log[2].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(4).price_log[3].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(4).price_log[3].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td></tr>
+										<tr>
+										  <td class="text-success fs-0_9"><%= set_header_pricelogs(4).price_log[4].price.to_f.round(4) %></td>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(4).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr1
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="xrp-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/Ripple tab-->
+				</div><!--/tab panes-->
+			</div><!--/container-->
+		</section>
+        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+	var ctx = $("#btc-chart");
+	if(ctx.length) var myChart = new Chart(ctx, {
+		type: 'line',
+		responsive: 'true',
+		data: {
+			labels: [
+				<% set_header_pricelogs(2).price_log.first(6).reverse_each do |log| %>
+					"<%= log.created_at.strftime('%m/%d') %>",
+				<% end %>	
+			],
+			datasets: [{
+				label: 'price',
+				data: [
+				<% set_header_pricelogs(2).price_log.first(6).reverse_each do |log| %>
+					<%= log.price %>,
+				<% end %>
+				],
+				backgroundColor: [
+				   'rgba(0, 0, 0, 0.1)'
+				],
+				borderColor: [
+					'rgba(49, 85, 246, 1)'
+				],
+				borderWidth: 3
+			}],
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+	
+	
+	var ctx = $("#bcc-chart");
+	if(ctx.length) var myChart = new Chart(ctx, {
+		type: 'line',
+		responsive: 'true',
+		data: {
+			labels: [
+				<% set_header_pricelogs(6).price_log.first(6).reverse_each do |log| %>
+					"<%= log.created_at.strftime('%m/%d') %>",
+				<% end %>	
+			],
+			datasets: [{
+				label: 'price',
+				data: [
+				<% set_header_pricelogs(6).price_log.first(6).reverse_each do |log| %>
+					<%= log.price %>,
+				<% end %>
+				],
+				backgroundColor: [
+				   'rgba(0, 0, 0, 0.1)'
+				],
+				borderColor: [
+					'rgba(49, 85, 246, 1)'
+				],
+				borderWidth: 3
+			}],
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+	
+	var ctx = $("#xem-chart");
+	if(ctx.length) var myChart = new Chart(ctx, {
+		type: 'line',
+		responsive: 'true',
+		data: {
+			labels: [
+				<% set_header_pricelogs(3).price_log.first(6).reverse_each do |log| %>
+					"<%= log.created_at.strftime('%m/%d') %>",
+				<% end %>	
+			],
+			datasets: [{
+				label: 'price',
+				data: [
+				<% set_header_pricelogs(3).price_log.first(6).reverse_each do |log| %>
+					<%= log.price %>,
+				<% end %>
+				],
+				backgroundColor: [
+				   'rgba(0, 0, 0, 0.1)'
+				],
+				borderColor: [
+					'rgba(49, 85, 246, 1)'
+				],
+				borderWidth: 3
+			}],
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+	
+	var ctx = $("#eth-chart");
+	if(ctx.length) var myChart = new Chart(ctx, {
+		type: 'line',
+		responsive: 'true',
+		data: {
+			labels: [
+				<% set_header_pricelogs(1).price_log.first(6).reverse_each do |log| %>
+					"<%= log.created_at.strftime('%m/%d') %>",
+				<% end %>	
+			],
+			datasets: [{
+				label: 'price',
+				data: [
+				<% set_header_pricelogs(1).price_log.first(6).reverse_each do |log| %>
+					<%= log.price %>,
+				<% end %>
+				],
+				backgroundColor: [
+				   'rgba(0, 0, 0, 0.1)'
+				],
+				borderColor: [
+					'rgba(49, 85, 246, 1)'
+				],
+				borderWidth: 3
+			}],
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+	
+	var ctx = $("#xrp-chart");
+	if(ctx.length) var myChart = new Chart(ctx, {
+		type: 'line',
+		responsive: 'true',
+		data: {
+			labels: [
+				<% set_header_pricelogs(4).price_log.first(6).reverse_each do |log| %>
+					"<%= log.created_at.strftime('%m/%d') %>",
+				<% end %>	
+			],
+			datasets: [{
+				label: 'price',
+				data: [
+				<% set_header_pricelogs(4).price_log.first(6).reverse_each do |log| %>
+					<%= log.price %>,
+				<% end %>
+				],
+				backgroundColor: [
+				   'rgba(0, 0, 0, 0.1)'
+				],
+				borderColor: [
+					'rgba(49, 85, 246, 1)'
+				],
+				borderWidth: 3
+			}],
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+	
+	
+</script>

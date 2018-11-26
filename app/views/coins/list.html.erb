@@ -1,68 +1,67 @@
-
-<div class="main mt-5">
+        <!--
+        	Page title
+        -->
+        <section id="page-title" class="py-30px bg-second-color">
+        	<div class="container">
+        		<div class="d-flex page-title justify-content-center justify-content-md-between align-items-center flex-column flex-md-row">
+					<h1 class="d-flex mb-0 fs-2 text-white fw-500">仮想通貨</h1>
+					<nav class="d-flex mb-0" aria-label="breadcrumb">
+					  <ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">通貨一覧</li>
+					  </ol>
+					</nav>
+				</div>
+        	</div>
+        </section>
         
-        <div class="row align-items-center">
-            <div class="col-3 title p-4 ml-2">
-                <h1 class="text-light m-4">通貨一覧</h1>
-            </div>
-            <% if user_signed_in? %>
-                <div class="col-8 ">
-                    <a href="" class="btn btn-outline-light" data-toggle="modal" data-target="#modalRegisterForm">新規追加</a>
-                </div>
-            <% end %>
-        </div>
- <div class="row mx-4 justify-content-around">
-    <% @coins.each do |coin| %>
-    <div class="card-deck col-md-4 py-2">  
-            <div class="card border-light">
-                <div class="card-body text-center">
-                    <% if coin.image.attached? %>
-                        <%= image_tag(coin.image,:class => "img-fluid img-thumbnail") %>
-                    <% elsif !coin.image_url.blank? %>
-                        <%= image_tag(coin.image_url, :class => "img-fluid img-thumbnail")%>
-                    <% else %>
-                        <%= image_tag('noimage.png', :class => "img-fluid img-thumbnail")%>
+        <!-- Icon Boxes -->
+        <section id="icon-box" class="py-80px bg-gray-300">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-lg-3 pl-5">
+        				<div class="heading-st-3 text-center mb-40px"><h2>仮想通貨一覧</h2></div>
+        			<% if user_signed_in? %>
+                        <div class="col-8 ">
+                            <a href="" class="btn btn-fill-color  btn " data-toggle="modal" data-target="#modalRegisterForm">新規追加</a>
+                        </div>
                     <% end %>
-                    
-                    
-                  
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title"><%= coin.name %></h5>
-                    <p class="card-text"><%= coin.name_en %>(<%= coin.name %>)の説明</p>
-                      
-                </div>
-                <div class="card-footer">
-                    <%=link_to "詳細", {:controller => "coins", :action => "show", :id => coin.id}, :class => "btn btn-block btn-outline-primary" %>
-                </div>
-            </div>
-    </div> 
-    <% end %>
-   
-    <table class="table table-sm table-striped table-light">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>名前</th>
-                <th>シンボル</th>
-                <th>価格</th>
-            </tr
-        </thead>
-        <tbody>
-            <% @coins.each do |coin| %>
-            <tr>
-                <td><%= coin.id %></td>
-                <td><%= coin.name %></td>
-                <td><%= coin.symbol %></td>
-                <td><%= coin.price %></td>
-                <td><%= link_to "詳細",:controller => "coins",:action => "show",:id =>  coin.id%></td>
-            </tr>       
-            <% end %>
-        </tbody>
-    </table>
-    
-    <%#= link_to "新規追加",:controller => "coins",:action => "new" %>
-    <%#=link_to "新規追加", {:controller => "coins", :action => "new"}, :class => "btn btn-outline-primary" %>
+        			</div>
+        			<div class="row mx-4 justify-content-around">
+                    <% @coins.each do |coin| %>
+                        <div class="card-deck col-md-4 py-2">  
+                            <div class="card border-light">
+                                <div class="card-body text-center">
+                                    <% if coin.image.attached? %>
+                                        <%= link_to image_tag(coin.image,:class => "img-fluid img-thumbnail img-coinlist"),{:controller => "coins", :action => "show", :id => coin.id} %>
+                                    <% elsif !coin.image_url.blank? %>
+                                        <%= link_to image_tag(coin.image_url,:class => "img-fluid img-thumbnail img-coinlist"),{:controller => "coins", :action => "show", :id => coin.id} %>
+                                    <% else %>
+                                        <%= link_to image_tag('noimage.png',:class => "img-fluid img-thumbnail img-coinlist"),{:controller => "coins", :action => "show", :id => coin.id} %>
+                                    <% end %>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= link_to coin.name,{:controller => "coins", :action => "show", :id => coin.id}, :class => "card-title",:style=>"color:black;" %>
+                                    </h5>
+                                    <p class="card-text"><%= coin.name_en %>(<%= coin.name %>)の説明</p>
+                                          
+                                </div>
+                                <div class="card-footer">
+                                    <%=link_to "詳細", {:controller => "coins", :action => "show", :id => coin.id}, :class => "btn btn-fill-color btn-round btn btn-md" %>
+                                </div>
+                            </div>
+                        </div>
+                     <% end %>
+                    </div> 
+        		</div>
+        	</div>
+        </section>
+        
+
+        
+		
+
 
 <!--ここから-->
         <% if user_signed_in? %>
@@ -129,5 +128,3 @@
         </div>
         <% end %>
 <!--ここまで-->
-
-        </div>

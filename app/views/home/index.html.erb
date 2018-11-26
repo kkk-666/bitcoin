@@ -1,0 +1,556 @@
+        
+        <!-- Banner -->
+        <section id="banner">
+    		<div class="demo-multibackground py-250px py-md-150px text-center" 
+				 data-multibackground="debug"
+				 data-multibackground-layer-0-type="youtube"
+				 data-multibackground-layer-0-attachment="parallax"
+				 data-multibackground-layer-0-parallaxspeed="-1.0"
+				 data-multibackground-layer-0-id="-MKapbz0GIo">
+				<div class="container">
+					<span class="text-gray-200 fw-300 fs-1_6">Encryption currency.</span>
+					<h1 class="mt-10px text-white">Bitcoin Cryptocurrency ICO Landing Page.</h1>
+				</div>
+			</div>
+    	</section>
+        
+        
+        <!--
+        	Blog
+        -->
+         <section id="blog" class="py-30px">
+        	<div class="container">
+        		<div class="heading-st-3 text-center mb-5px"><h2>最新ニュース</h2></div>
+        		<div class="row">
+
+					<% @news_list.first(6).each do |news| %>
+        			<div class="col-lg-6"><!--記事-->
+        				<div class="rd-5 mb-30px bg-gray-100 news-box p-30px brd-thin-solid brd-gray-300">
+        					<div class="row">
+        						<div class="col-lg-5">
+        							<img src="/assets/img/img-1.jpg" alt="" class="rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+        						</div>
+        						<div class="col-lg-7">
+        							<h4 class="fw-500 mb-10px">
+										<a class="text-third-color" href="<%= news[:url] %> " target="_blank"><%= news[:title] %></a>
+									</h4>
+									<span class="text-gray-400 fs-0_9 d-block mb-20px"><%= news[:published] %></span>
+									<p class="mb-0"><%= news[:summary].gsub(/\[&#8230;\]/,'') %>...<a href="<%= news[:url] %>"><詳細></a></p>
+        						</div>
+        					</div>
+        				</div><!--/news-box-->
+         			</div><!--記事-->
+         			<% end %>
+
+        			
+        		
+        		</div>
+			 </div>
+		</section>
+
+         <!--
+        	Coin tabs
+        -->
+        <section id="coin-tabs" class="py-80px bg-gray-200">
+        	<div class="container">
+        		<!--nav tabs-->
+        		<ul class="nav nav-tabs brd-none" id="myTab" role="tablist">
+				  <li class="nav-item">
+					<a class="nav-link active rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="btc-tab" data-toggle="tab" href="#btc" role="tab" aria-controls="btc" aria-selected="true">Bitcoin (BTC)</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="btcc-tab" data-toggle="tab" href="#btcc" role="tab" aria-controls="btcc" aria-selected="false">Bitcoin Cash (BCH)</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="ltc-tab" data-toggle="tab" href="#ltc" role="tab" aria-controls="ltc" aria-selected="false">Litecoin (LTC)</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="eth-tab" data-toggle="tab" href="#eth" role="tab" aria-controls="eth" aria-selected="false">Ethereum (ETH)</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link rd-5 py-10px px-20px fs-1_2 mb-30px mr-30px brd-none text-color" id="xrp-tab" data-toggle="tab" href="#xrp" role="tab" aria-controls="xrp" aria-selected="false">Ripple (XRP)</a>
+				  </li>
+				</ul>
+				<!--tab panes-->
+				<div class="tab-content" id="myTabContent">
+					<!--Bitcoin tab-->
+					<div class="tab-pane fade show active" id="btc" role="tabpanel" aria-labelledby="btc-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-danger">-10659.06</span><br>
+											<span class="d-block mt-10px fs-0_9">Daily Change</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Today Open</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">BTC</span>
+											<span class="text-first-color">9652</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Volume</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table mb-0">
+									  <thead>
+										<tr>
+										  <th scope="col">Amount</th>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-danger fs-0_9">		-2.5562       </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-warning fs-0_9">		-2.5562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								
+
+								
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="btc-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/bitcoin tab-->
+					
+					<!--Bitcoin cash tab-->
+					<div class="tab-pane fade" id="btcc" role="tabpanel" aria-labelledby="btcc-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">1986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-danger">-159.06</span><br>
+											<span class="d-block mt-10px fs-0_9">Daily Change</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">186.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">1986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">13986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Today Open</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">BTC</span>
+											<span class="text-first-color">9652</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Volume</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table mb-0">
+									  <thead>
+										<tr>
+										  <th scope="col">Amount</th>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-third-color fs-0_9">	854.81694929  </td>
+										  <td class="text-success fs-0_9">		1.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	854.81694929  </td>
+										  <td class="text-danger fs-0_9">		-5.5562       </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	964.81694929  </td>
+										  <td class="text-success fs-0_9">		5.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	521.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	884.81694929  </td>
+										  <td class="text-success fs-0_9">		1.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="btcc-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/Bitcoin cash tab-->
+					
+					<!--Litecoin tab-->
+					<div class="tab-pane fade" id="ltc" role="tabpanel" aria-labelledby="ltc-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">10659.06</span><br>
+											<span class="d-block mt-10px fs-0_9">Daily Change</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Today Open</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">BTC</span>
+											<span class="text-first-color">9652</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Volume</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table mb-0">
+									  <thead>
+										<tr>
+										  <th scope="col">Amount</th>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.5562       </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.6562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-warning fs-0_9">		-2.5562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="ltc-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/Litecoin tab-->
+					
+					<!-- Ethirum tab -->
+					<div class="tab-pane fade" id="eth" role="tabpanel" aria-labelledby="eth-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-danger">-10659.06</span><br>
+											<span class="d-block mt-10px fs-0_9">Daily Change</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Today Open</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">BTC</span>
+											<span class="text-first-color">9652</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Volume</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table">
+									  <thead>
+										<tr>
+										  <th scope="col">Amount</th>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-warning fs-0_9">		-2.6562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-warning fs-0_9">		-2.5562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="eth-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/Ethirum tab-->
+					
+					<!--Ripple Tab-->
+					<div class="tab-pane fade" id="xrp" role="tabpanel" aria-labelledby="xrp-tab">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="rd-5 bg-white p-30px">
+									<div class="row">
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Last Price</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-danger">-10659.06</span><br>
+											<span class="d-block mt-10px fs-0_9">Daily Change</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Low</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour High</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">USD</span>
+											<span class="text-first-color">12986.19</span><br>
+											<span class="d-block mt-10px fs-0_9">Today Open</span>
+										</div>
+										<div class="col-lg-2 text-center mb-md-30px mb-sm-30px mb-xs-30px">
+											<span class="text-black">BTC</span>
+											<span class="text-first-color">9652</span><br>
+											<span class="d-block mt-10px fs-0_9">24-Hour Volume</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-100 my-15px"></div>
+							<!--Live trades-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5 mb-md-30px mb-sm-30px mb-xs-30px">
+									<h4>Live Trades</h4>
+									<table class="table">
+									  <thead>
+										<tr>
+										  <th scope="col">Amount</th>
+										  <th scope="col">Price</th>
+										  <th scope="col">UTC Time</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-danger fs-0_9">		-2.5562       </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-success fs-0_9">		2.7562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-warning fs-0_9">		-2.6562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+										<tr>
+										  <td class="text-third-color fs-0_9">	924.81694929  </td>
+										  <td class="text-warning fs-0_9">		-2.5562        </td>
+										  <td class="text-gray-500 fs-0_9">		12:34:20      </td>
+										</tr>
+									  </tbody>
+									</table>
+								</div>
+							</div>
+							<!--Growth-->
+							<div class="col-lg-6">
+								<div class="bg-white p-30px rd-5">
+									<h4>Total Growth</h4>
+									<div class="chart-container"><canvas id="xrp-chart"></canvas></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/Ripple tab-->
+				</div><!--/tab panes-->
+			</div><!--/container-->
+		</section>
+        

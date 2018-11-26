@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   #get 'coins/:id' => 'coins#show' # ~coins/list 引っかかる
   
   get '/' => 'home#top'
+  get 'news' => 'home#news'
   get 'coins/list' => 'coins#list'
+  get 'coins/post' => 'coins#post'
   get 'coins/new' => 'coins#new'
   get 'coins/:id' => 'coins#show'
   post 'coins/create'

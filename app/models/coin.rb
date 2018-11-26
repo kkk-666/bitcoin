@@ -12,4 +12,6 @@ class Coin < ApplicationRecord
         numericality: true
         
     scope :with_eager_loaded_images, -> { eager_load(images_attachments: :blob) }
+    
+
 end

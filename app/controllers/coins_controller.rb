@@ -4,7 +4,8 @@ class CoinsController < ApplicationController
    before_action :set_coin_with_pricelogs, only: [:show]
     # ユーザがログインしていないと"show"にアクセスできない
    before_action :authenticate_user!, only: [:new,:edit]
-   
+  
+  
   def list
     @coins = Coin.all
     @coin = Coin.new

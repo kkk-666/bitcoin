@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
     # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  helper_method :set_header_pricelogs
 
   # deviceのコントローラーのときに、下記のメソッドを呼ぶ
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -14,4 +15,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
+  
+  def set_header_pricelogs(coin_id)
+   #特定データの取得(PriceLogあり)
+    return Coin.includes(:price_log).order("price_logs.created_at DESC").find(coin_id)
+  end
+  
 end

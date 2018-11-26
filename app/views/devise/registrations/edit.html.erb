@@ -1,13 +1,25 @@
-<h2>プロフィール変更</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
+<div class="py-50px demo-multibackground"
+	     data-multibackground="debug"
+	     data-multibackground-layer-0-type="image"
+	     data-multibackground-layer-0-attachment="fixed"
+	     data-multibackground-layer-0-url="assets/img/bt-bg.jpg">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<div class="rd-10 p-5 bg-white text-center big-shadow">
+						
+						<h3>プロフィール変更</h3>
+						
+						
+						<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
+  					
+  					
+	  				<div class="field">
     <%= f.label "ユーザー名" %><br />
     <%= f.email_field :username, autofocus: true, autocomplete: "email" %>
   </div>
-
+  
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -36,8 +48,15 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>アカウントをキャンセルする</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p><%= button_to "アカウントをキャンセルする", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+											
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

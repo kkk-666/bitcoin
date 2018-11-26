@@ -8,10 +8,16 @@ module Coins::Pricelog extend self
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
     
+    high = result["data"]["high"].to_f
+    puts "high:#{high}"
+    
+    low = result["data"]["low"].to_f 
+    puts "low:#{low}"
+    
     last = result["data"]["last"].to_f #float
     puts "last:#{last}"
     
-    eth_pricelog = PriceLog.new(:price => last,:coin_id => 1)
+    eth_pricelog = PriceLog.new(:price => last,:high => high,:low => low,:coin_id => 1)
     eth_pricelog.save
   end
   
@@ -20,17 +26,16 @@ module Coins::Pricelog extend self
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
     
-    # sell = result["data"]["sell"].to_i
-    # puts "sell:#{sell}"
+    high = result["data"]["high"].to_f
+    puts "high:#{high}"
     
-    # # TODO buyの値を表示
-    # buy = result["data"]["buy"].to_i
-    # puts "buy:#{buy}"
+    low = result["data"]["low"].to_f 
+    puts "low:#{low}"
     
     last = result["data"]["last"].to_f
     puts "last:#{last}"
     
-    btc_pricelog = PriceLog.new(:price => last,:coin_id => 2)
+    btc_pricelog = PriceLog.new(:price => last,:high => high,:low => low,:coin_id => 2)
     btc_pricelog.save
   end
   
@@ -39,10 +44,16 @@ module Coins::Pricelog extend self
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
     
+    high = result["high"].to_f
+    puts "high:#{high}"
+    
+    low = result["low"].to_f
+    puts "low:#{low}"
+    
     last = result["last"].to_f 
     puts "last:#{last}"
     
-    xem_pricelog = PriceLog.new(:price => last,:coin_id => 3)
+    xem_pricelog = PriceLog.new(:price => last,:high => high,:low => low,:coin_id => 3)
     xem_pricelog.save
   end
   
@@ -51,22 +62,34 @@ module Coins::Pricelog extend self
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
     
+    high = result["data"]["high"].to_f
+    puts "high:#{high}"
+    
+    low = result["data"]["low"].to_f 
+    puts "low:#{low}"
+    
     last = result["data"]["last"].to_f
     puts "last:#{last}"
     
-    xrp_pricelog = PriceLog.new(:price => last,:coin_id => 4)
+    xrp_pricelog = PriceLog.new(:price => last,:high => high,:low => low,:coin_id => 4)
     xrp_pricelog.save
   end
   
   def ltc
-    uri = URI.parse('https://public.bitbank.cc/xrp_jpy/ticker')
+    uri = URI.parse('https://public.bitbank.cc/ltc_jpy/ticker')
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
+    
+    high = result["data"]["high"].to_f
+    puts "high:#{high}"
+    
+    low = result["data"]["low"].to_f 
+    puts "low:#{low}"
     
     last = result["data"]["last"].to_f
     puts "last:#{last}"
     
-    ltc_pricelog = PriceLog.new(:price => last,:coin_id => 5)
+    ltc_pricelog = PriceLog.new(:price => last,:high => high,:low => low,:coin_id => 5)
     ltc_pricelog.save
   end
   
@@ -75,10 +98,16 @@ module Coins::Pricelog extend self
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
     
+    high = result["data"]["high"].to_f
+    puts "high:#{high}"
+    
+    low = result["data"]["low"].to_f 
+    puts "low:#{low}"
+    
     last = result["data"]["last"].to_f
     puts "last:#{last}"
     
-    bcc_pricelog = PriceLog.new(:price => last,:coin_id => 6)
+    bcc_pricelog = PriceLog.new(:price => last,:high => high,:low => low,:coin_id => 6)
     bcc_pricelog.save
   end
   
@@ -87,10 +116,16 @@ module Coins::Pricelog extend self
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
     
+    high = result["data"]["high"].to_f
+    puts "high:#{high}"
+    
+    low = result["data"]["low"].to_f 
+    puts "low:#{low}"
+    
     last = result["data"]["last"].to_f
     puts "last:#{last}"
     
-    mona_pricelog = PriceLog.new(:price => last,:coin_id => 7)
+    mona_pricelog = PriceLog.new(:price => last,:high => high,:low => low,:coin_id => 7)
     mona_pricelog.save
   end
 end

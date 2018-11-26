@@ -1,0 +1,75 @@
+<!--
+        	Page title
+        -->
+        <section id="page-title" class="py-30px bg-second-color">
+        	<div class="container">
+        		<div class="d-flex page-title justify-content-center justify-content-md-between align-items-center flex-column flex-md-row">
+					<h1 class="d-flex mb-0 fs-2 text-white fw-500">News</h1>
+					<nav class="d-flex mb-0" aria-label="breadcrumb">
+					  <ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">News</li>
+					  </ol>
+					</nav>
+				</div>
+        	</div>
+        </section>
+        
+		<div class="row no-gutters">
+			<aside class="col-lg-4 mr-auto bg-gray-200 brd-thin-solid brd-gray-400 border-top-0 border-left-0 border-bottom-0">
+				<div class="aside-container float-right">
+					<div class="py-80px pr-30px pl-1px pl-md-30px pl-sm-30px pl-xs-30px">
+						<!--Aside content Start -->
+						
+						<!-- Search widget-->
+						<div class="widget mb-80px">
+							<h3 class="fs-1 ls-2">Search Here</h3>
+							<div class="input-group mb-3">
+							  <input type="text" class="form-control" placeholder="Search here..">
+							  <div class="input-group-append">
+								<button class="btn btn-fill-color text-white" type="button">Search</button>
+							  </div>
+							</div>
+						</div>
+						
+						<!-- Latest articles widget-->
+						<div class="widget mb-80px">
+							<h3 class="fs-1 ls-2">Latest Articles</h3>
+							<% @news_list.first(5).each do |news| %>
+							<ul class="m-0">
+								<li><a href="<%= news[:url] %> " target="_blank" class="py-5px d-block"><%= news[:title] %></a></li>
+							</ul>
+							<% end %>
+						</div>
+						
+						
+						
+						<!--Aside content End -->
+					</div>
+				</div>
+			</aside>
+			
+			<!-- Content -->
+			<div class="col-lg-7">
+				<div class="row px-md-30px px-sm-30px px-xs-30px">
+					<% @news_list.first(10).each do |news| %>
+					<div class="col-lg-10">
+						<section class="mt-80px">
+							<!-- Blog-box -->
+							<div class="blog-box mb-100px">
+								<img src="assets/img/img-15.jpg" class="mb-40px rd-5" alt="">
+								<h2><a href="<%= news[:url] %> " target="_blank" class="text-black"><%= news[:title] %></a></h2>
+								<p class="mb-35px">
+									<%= news[:summary].gsub(/\[&#8230;\]/,'') %>...<a href="<%= news[:url] %> " target="_blank"><詳細></a>
+								</p>
+								<div class="post-info fs-0_9 d-flex align-items-center">
+									<span class="ml-15px"><%= news[:published] %></span>
+								</div>
+							</div>
+						</section>
+					</div>
+					<% end %>
+				</div>
+			</div>
+			
+		</div>

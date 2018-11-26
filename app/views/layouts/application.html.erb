@@ -1,79 +1,224 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bitcoin</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script> 
-
-  </head>
-
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-  <div class="container">
-    <!--ナビゲーション-->
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">VCoins</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <%= link_to "Home", "/", :class => "nav-link active" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "仮想通貨一覧", coins_list_path, :class => "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ニュース", "#", :class => "nav-link" %>
-            </li>
-          </ul>
-          <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
-          <% if user_signed_in? %> 
-            <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
-            <!-- *_path はUserモデルを作成したときに、
-              deviseにより自動で作成されてますので、rake routesで確認できます -->
-            Logged in as <strong><%= current_user.email %></strong>.
-            <%= link_to 'プロフィール変更', edit_user_registration_path, :class => "nav-link"  %> |
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => "nav-link"  %>
-          <% else %>
-            <%= link_to "サインイン", new_user_registration_path, :class => "nav-link"  %> |
-            <%= link_to "ログイン", new_user_session_path, :class => "nav-link"  %>
-          <% end %>
-          <!--
-          <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="キーワード" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-          </form>
-          -->
-        </div>
-      </nav>
+<!doctype html>
+<html lang="en">
     
+    <head>
+        <title>Bcoin | Bitcoin Crypto Currency HTML Template</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/assets/css/import.css">
+        <!-- Chart.jsの本体-->
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+        <%= javascript_include_tag 'application' %>
+        <%= csrf_meta_tag %>
+    </head>
     
+    <body class="animate-in">
+        
+        <header>
+          	<!--
+          		Top bar
+          	-->
+           	<div class="top-bar bg-third-color py-sm-20px py-xs-20px">
+           		<div class="container">
+           			<div class="d-flex flex-column flex-md-row align-items-center">
+           				<!--
+           					Select currency
+           				-->
+           				<script>
+							window.onload = function() {
+							  quick_price();
+							};
+							
+							function quick_price(){
+							  obj = document.coins.linkselect;
+							
+							  index = obj.selectedIndex;
+							  price = obj.options[index].value;
+							  document.getElementById("qprice").textContent = price;
+							}
+						</script>
+						
+           				<div class="d-flex">
+           					<div class="select-currency fs-0_9">
+           						<form name="coins">
+	           						<select name="linkselect" class="form-control fs-0_9" id="exampleFormControlSelect2" onChange="quick_price()">
+									  <option value="<%= set_header_pricelogs(2).price_log[0].price.to_f.round(4) %>" selected>BTC / JPY</option>
+									  <option value="<%= set_header_pricelogs(1).price_log[0].price.to_f.round(4) %>">ETH / JPY</option>
+									  <option value="<%= set_header_pricelogs(3).price_log[0].price.to_f.round(4) %>">XEM / JPY</option>
+									  <option value="<%= set_header_pricelogs(4).price_log[0].price.to_f.round(4) %>">XRP / JPY</option>
+									  <option value="<%= set_header_pricelogs(6).price_log[0].price.to_f.round(4) %>">BCC/ JPY</option>
+									</select>
+								</form>
+           					</div>
+           				</div>
+           				<!--
+           					Currency selected
+           				-->
+           				<div class="d-flex select-selection fs-0_9 ml-5px mr-auto">
+							<span class="text-white pr-5px">JPY</span><span class="text-first-color" id="qprice">00000</span>
+						</div>
+           			</div>
+           		</div>
+           	</div>
+           	<!--end#top-bar-->
+            <div class="container">
+            	<!--
+            		Main nav
+            	-->
+            	<nav class="navbar align-items-center navbar-expand-lg">
+					<a class="navbar-brand d-inline-flex logo" href="/"> 
+						<img src="/assets/img/logo.png" alt=""> 
+					</a>
+					<!-- Responsive button -->
+					<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> <i class="fa fa-bars"></i> </button>
+					
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav justify-content-end">
+							<!--========== Home ================-->
+							<li class="nav-item">
+							  <%= link_to 'Home', "/", :class => 'nav-link js-scroll-trigger' %>
+							</li>
+							<!--========== 仮想通貨一覧 ================-->
+							<li class="nav-item">
+							  <%= link_to '仮想通貨一覧', coins_list_path, :class => 'nav-link js-scroll-trigger' %>
+							</li>
+							<!--========== News ================-->
+							<li class="nav-item">
+							  <%= link_to 'News list', "/news", :class => 'nav-link js-scroll-trigger' %>
+							</li>
+							<!--========== Elements ===============-->
+						</ul>
+					</div>
+						
+					<!-- SEARCH -->
+					<div class="dropdown search-bar ml-30px"> <i role="main" class="fa fa-search dropdown-toggle" id="DropSearchForm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="sr-only">Search</span> </i>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="DropSearchForm">
+						   <div class="input-group p-15px">
+							  <input type="text" class="form-control" placeholder="Search here ..">
+							  <div class="input-group-append">
+								<button class="btn btn-fill-dark" type="button">Search</button>
+							  </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Account -->
+					<div class="dropdown account-bar"> <i role="main" class="fa fa-user-circle dropdown-toggle" id="DropAccountForm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="sr-only">Account</span> </i>
+						<div class="dropdown-menu dropdown-menu-right p-10px" aria-labelledby="DropAccountForm">
+						   <div class="row">
+						   		<div class="col-lg-12"><h6><i class="fa fa-user-o mr-15px"></i>Login Now or Create a New Account</h6></div>
+						   		<div class="col-lg-6">
+					                <% if user_signed_in? %>
+					                <%= link_to 'プロフィール変更', edit_user_registration_path %>
+					                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+					            	<% else %>
+					                <%= link_to 'サインアップ', new_user_registration_path %>
+					                <%= link_to 'ログイン', new_user_session_path %>
+								</div>
+									<% end %>
+							        <p class="notice"><%= notice %></p>
+							        <p class="alert"><%= alert %></p>
+							    <div class="col-lg-6">
+						
+								</div>
+								<div class="col-lg-12">
+								   <a href="/users/sign_up" class="btn btn-fill-color text-white btn-block">Sign in</a>
+								   <a href="/users/sign_in" class="btn btn-fill-color text-white btn-block">Login</a>
+								</div>
+						   </div>
+						</div>
+					</div>
+				</nav>
+            </div>
+        </header>
+
     <!--ここの中にERBがはいる-->
     <%= yield %>
     <!--ここの中にERBがはいる-->
-  </div>
-  
-  
-      <!-- FOOTER -->
-      <footer class="container">
-        <p class="float-right"><a href="/">Back to top</a></p>
-        <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-    </main>
-  </body>
+        
+
+    
+        <footer class="pt-40px pb-10px bg-third-color">
+            <div class="container">
+				<div class="row">
+					<div class="col-lg-4 mr-auto mb-md-40px mb-sm-40px mb-xs-40px">
+						<img src="/assets/img/logo-footer.png" alt="" class="mb-40px">
+						<ul class="list-unstyled p-0 m-0">
+							<li class="d-flex flex-row fs-1_2 mb-30px">
+								<i class="fa fa-map-marker mr-20px"></i>
+								Sit amet, consectetur Mauris posuere a ipsum in bibendum.
+							</li>
+							<li class="d-flex flex-row fs-1_2 mb-30px">
+								<i class="fa fa-at mr-20px"></i>
+								info@goldentemp.com
+							</li>
+							<li class="d-flex flex-row fs-1_2 mb-30px">
+								<i class="fa fa-mobile fs-1_6 mr-20px"></i>
+								+012 345 6789
+							</li>
+						</ul>
+					</div>
+					<div class="col-lg-2 mb-md-40px mb-sm-40px mb-xs-40px">
+						<h4 class="text-white mb-40px fw-500">Information</h4>
+						<ul class="list-unstyled p-0 m-0">
+							<li><a href="/" class="text-color mb-20px d-block">Home</a></li>
+							<li><a href="coins/list" class="text-color mb-20px d-block">仮想通貨一覧</a></li>
+							<li><a href="/news" class="text-color mb-20px d-block">Newslist</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-2 mb-md-40px mb-sm-40px mb-xs-40px">
+						<h4 class="text-white mb-40px fw-500">Virtual currency</h4>
+						<ul class="list-unstyled p-0 m-0">
+							<li><a href="/coins/2" class="text-color mb-20px d-block">Bitcoin</a></li>
+							<li><a href="/coins/1" class="text-color mb-20px d-block">Ethereum</a></li>
+							<li><a href="/coins/4" class="text-color mb-20px d-block">Ripple</a></li>
+							<li><a href="/coins/3" class="text-color mb-20px d-block">XEM</a></li>
+							<li><a href="/coins/6" class="text-color mb-20px d-block">Bitcoin Cash</a></li>
+						</ul>
+					</div>
+				</div>
+           		<div class="row">
+           			<div class="col-lg-12 mt-30px pt-30px brd-thin-solid brd-gray-900 border-right-0 border-left-0 border-bottom-0">
+           				<div class="row">
+           					<div class="col-lg-4 mb-md-40px mb-sm-40px mb-xs-40px">
+           						<span class="fs-0_9">All Rights Reserved 2018 @ Goldentemp</span>
+           					</div>
+           				</div>
+           			</div>
+           		</div>
+            </div>
+        </footer>
+		
+<!--Go to top-->
+		<p id="back-top">
+			<a href="#top"><i class="fa fa-angle-up"></i></a>
+		</p>
+        
+        <!-- Jquery | Popper | Bootstrap -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="/assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+        <script src="/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- Jquery easing -->
+		<script src="/assets/node_modules/startbootstrap-scrolling-nav/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Owl slider -->
+        <script src="/assets/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+		<script src="/assets/js/plugins/owl.carousel.autoplay/owl.autoplay.min.js"></script>
+		<!-- Counters -->
+		<script src="/assets/js/plugins/countimator/js/countimator.min.js"></script>
+		<!-- Multibackground -->
+		<script src="/assets/js/plugins/multibackground/multibackground.min.js"></script>
+		<!-- Charts js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+		<!-- Plyr -->
+		<script src="/assets/node_modules/plyr/dist/plyr.js"></script>
+		<!-- Scrolling nav -->
+		<script src="/assets/node_modules/startbootstrap-scrolling-nav/js/scrolling-nav.js"></script>
+		<!-- Retinajs -->
+		<script src="/assets/node_modules/retinajs/dist/retina.min.js"></script>
+		<!-- Custom js options -->
+		<script src="/assets/js/custom.js"></script>
+
+	</body>
 </html>
