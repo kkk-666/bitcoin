@@ -30,10 +30,6 @@
         				</p>
 					</div>
         			<% end %>
-        			
-					
-
-        			
         		
         		</div>
 			 </div>
@@ -133,22 +129,18 @@
 										<tr>
 										  <td class="text-success fs-0_9"><%= set_header_pricelogs(2).price_log[4].price.to_f.round(4) %></td>
 										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(2).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-										</tr1
+										</tr>
 									  </tbody>
 									</table>
 								</div>
 							</div>
 							<!--Growth-->
 							<div class="col-lg-6">
-								
-
-								
 								<div class="bg-white p-30px rd-5">
 									<h4>Total Growth</h4>
-									<div class="chart-container"><canvas id="btc-chart" width="430" height="280"></div>
+									<div class="chart-container"><canvas id="btc-chart" width="430" height="280"></canvas></div>
 								</div>
 							</div>
-							
 						</div>
 					</div>
 					<!--/bitcoin tab-->
@@ -213,7 +205,7 @@
 										<tr>
 										  <td class="text-success fs-0_9"><%= set_header_pricelogs(6).price_log[4].price.to_f.round(4) %></td>
 										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(6).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-										</tr1
+										</tr>
 									  </tbody>
 									</table>
 								</div>
@@ -289,7 +281,7 @@
 										<tr>
 										  <td class="text-success fs-0_9"><%= set_header_pricelogs(3).price_log[4].price.to_f.round(4) %></td>
 										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(3).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-										</tr1
+										</tr>
 									  </tbody>
 									</table>
 								</div>
@@ -306,7 +298,7 @@
 					<!--/Litecoin tab-->
 					
 					<!-- Ethirum tab -->
-					<div class="tab-pane fade" id="eth" role="tabpanel" aria-labelledby="eth-tab">
+				<div class="tab-pane fade" id="eth" role="tabpanel" aria-labelledby="eth-tab">
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="rd-5 bg-white p-30px">
@@ -361,11 +353,12 @@
 										</tr>
 										<tr>
 										  <td class="text-success fs-0_9"><%= set_header_pricelogs(1).price_log[3].price.to_f.round(4) %></td>
-										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(1).price_log[3].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td></tr>
+										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(1).price_log[3].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+										</tr>
 										<tr>
 										  <td class="text-success fs-0_9"><%= set_header_pricelogs(1).price_log[4].price.to_f.round(4) %></td>
 										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(1).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-										</tr1
+										</tr>
 									  </tbody>
 									</table>
 								</div>
@@ -374,7 +367,7 @@
 							<div class="col-lg-6">
 								<div class="bg-white p-30px rd-5">
 									<h4>Total Growth</h4>
-									<div class="chart-container"><canvas id="eth-chart"></canvas></div>
+									<div class="chart-container"><canvas id="eth-chart" width="150" height="100"></canvas></div>
 								</div>
 							</div>
 						</div>
@@ -441,7 +434,7 @@
 										<tr>
 										  <td class="text-success fs-0_9"><%= set_header_pricelogs(4).price_log[4].price.to_f.round(4) %></td>
 										  <td class="text-gray-500 fs-0_9"><%= set_header_pricelogs(4).price_log[4].created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-										</tr1
+										</tr>
 									  </tbody>
 									</table>
 								</div>
@@ -462,6 +455,7 @@
         
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
+window.onload = function(){
 	var ctx = $("#btc-chart");
 	if(ctx.length) var myChart = new Chart(ctx, {
 		type: 'line',
@@ -573,7 +567,7 @@
 			}
 		}
 	});
-	
+
 	var ctx = $("#eth-chart");
 	if(ctx.length) var myChart = new Chart(ctx, {
 		type: 'line',
@@ -610,7 +604,7 @@
 			}
 		}
 	});
-	
+
 	var ctx = $("#xrp-chart");
 	if(ctx.length) var myChart = new Chart(ctx, {
 		type: 'line',
@@ -647,6 +641,5 @@
 			}
 		}
 	});
-	
-	
+}
 </script>
