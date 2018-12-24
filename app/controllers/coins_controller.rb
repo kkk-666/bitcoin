@@ -50,8 +50,9 @@ class CoinsController < ApplicationController
   end
   
   def destroy
-    @coins.destroy
-    redirect_to coins_path
+    @coin = Coin.find_by(id: params[:id])
+    @coin.destroy
+    redirect_to("/")
   end
   
   private

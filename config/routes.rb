@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post 'coins/create'
   get 'coins/:id/edit' => 'coins#edit'
   patch 'coins/:id' => 'coins#update'
+  post "coins/:id/destroy" => "coins#destroy"
   root to: "home#top"
   
   
